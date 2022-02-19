@@ -6,3 +6,6 @@ cd ..
 gcc -S kernel.c
 nasm -f elf64 kernel.s
 ld kernel.o -o kernel.elf
+touch os.iso
+cat bootsect.bin >> os.iso
+cat kernel.elf >> os.iso
