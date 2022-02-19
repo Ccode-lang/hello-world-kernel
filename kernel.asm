@@ -2,8 +2,8 @@ section .data
 
 section .text
 
-global start
+global _start
 
-start:
+_start:
     ;forever loop
     jmp $
