@@ -5,6 +5,3 @@ nasm bootelf.asm -f bin -o bootsect.bin
 cd ..
 nasm -f elf64 kernel.asm
 ld kernel.o -o kernel.elf
-touch os.iso
-cat kernel.elf > os.iso
-cat bootelf/bootsect.bin > os.iso
