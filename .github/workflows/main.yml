@@ -23,6 +23,10 @@ jobs:
           bash build.sh
       - uses: actions/upload-artifact@v2
         with:
-          name: os.iso
-          path: os.iso
+          name: bootsect.bin
+          path: bootelf/bootsect.bin
+      - uses: actions/upload-artifact@v2
+        with:
+          name: kernel.elf
+          path: kernel.elf
         
