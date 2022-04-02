@@ -42,7 +42,7 @@ void kprint(const char *str, int color) {
 
 void kmain(void) {
   clear();
-  kb_init()
+  kb_init();
   kprint("Hello, world!", VGA_COLOR_GREEN);
   return;
 }
