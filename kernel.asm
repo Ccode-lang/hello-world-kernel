@@ -1,22 +1,21 @@
-section .data
-
+;nasm directive - 32 bit
+bits 32
 section .text
+        ;multiboot spec
+        align 4
+        dd 0x1BADB002            ;magic
+        dd 0x00                  ;flags
+        dd - (0x1BADB002 + 0x00) ;checksum. m+f+c should be zero
 
-global _start
+global start
+extern kmain	        ;kmain is defined in the c file
 
-_start:
-    mov ax, 0xb800
-    mov es, ax
-    mov si, 0
-    
-    mov es: si, ’H’
-    mov si, 1
-    mov es: si, ’e’
-    mov si, 2
-    mov es: si, ’l’
-    mov si, 3
-    mov es: si, ’l’
-    mov si, 4
-    mov es: si, ’o’
-    ;forever loop
-    jmp $
+start:
+  cli 			;block interrupts
+  mov esp, stack_space	;set stack pointer
+  call kmain
+  jmp $		 	;halt the CPU
+
+section .bss
+resb 8192
+stack_space:
