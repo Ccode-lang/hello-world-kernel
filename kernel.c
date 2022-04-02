@@ -1,3 +1,4 @@
+#include "includes/colors.h"
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
 unsigned int i = 0;
 unsigned int j = 0;
@@ -15,13 +16,13 @@ void clear() {
 	}
 }
 
-void kprint(const char *str) {
+void kprint(const char *str, int color) {
   j = 0;
 	while(str[j] != '\0') {
 		/* the character's ascii */
 		vidptr[i] = str[j];
 		/* attribute-byte: give character black bg and light grey fg */
-		vidptr[i+1] = 0x07;
+		vidptr[i+1] = color;
 		++j;
 		i = i + 2;
 	}
@@ -29,6 +30,6 @@ void kprint(const char *str) {
 
 void kmain(void) {
   clear();
-  kprint("Hello world!");
+  kprint("Hello world!", VGA_COLOR_GREEN);
 	return;
 }
