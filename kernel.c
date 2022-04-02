@@ -3,12 +3,6 @@ unsigned int i = 0;
 unsigned int j = 0;
 
 
-void kmain(void) {
-  clear();
-  kprint("Hello world!");
-	return;
-}
-
 void clear() {
   j = 0;
   i = 0;
@@ -31,4 +25,10 @@ void kprint(const char *str) {
 		++j;
 		i = i + 2;
 	}
+}
+
+void kmain(void) {
+  clear();
+  kprint("Hello world!");
+	return;
 }
