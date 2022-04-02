@@ -5,10 +5,13 @@ section .text
 global _start
 
 _start:
-    mov $0xb8000, ’H’
-    mov $0xb8001, ’e’
-    mov $0xb8002, ’l’
-    mov $0xb8003, ’l’
-    mov $0xb8004, ’o’
+    mov ax, 0xb800
+    mov es, ax
+    
+    mov es:0, ’H’
+    mov es:1, ’e’
+    mov es:2, ’l’
+    mov es:3, ’l’
+    mov es:4, ’o’
     ;forever loop
     jmp $
