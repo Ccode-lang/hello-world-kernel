@@ -1,8 +1,5 @@
 #include "includes/colors.h"
 
-extern char read_port(unsigned short port);
-extern void write_port(unsigned short port, unsigned char data);
-
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
 unsigned int i = 0;
 unsigned int j = 0;
