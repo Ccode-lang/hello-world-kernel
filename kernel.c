@@ -1,9 +1,4 @@
 #include "includes/colors.h"
-#include "includes/map.h"
-
-#define KEYBOARD_DATA_PORT 0x60
-#define KEYBOARD_STATUS_PORT 0x64
-#define ENTER_KEY_CODE 0x1C
 
 extern char read_port(unsigned short port);
 extern void write_port(unsigned short port, unsigned char data);
@@ -11,10 +6,6 @@ extern void write_port(unsigned short port, unsigned char data);
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
 unsigned int i = 0;
 unsigned int j = 0;
-
-void kb_init(void) {
-	write_port(0x21 , 0xFD);
-}
 
 void clear() {
   j = 0;
@@ -42,7 +33,6 @@ void kprint(const char *str, int color) {
 
 void kmain(void) {
   clear();
-  kb_init();
   kprint("Hello, world!", VGA_COLOR_GREEN);
   return;
 }
