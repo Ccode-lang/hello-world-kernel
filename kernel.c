@@ -1,4 +1,8 @@
 #include "includes/colors.h"
+#include "includes/keymap.h"
+
+extern char read_port(unsigned short port);
+extern void write_port(unsigned short port, unsigned char data);
 
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
 unsigned int i = 0;
@@ -29,6 +33,8 @@ void kprint(const char *str, int color) {
 }
 
 void kmain(void) {
+  write_port(0x21 , 0xFD);
+  write_port(0x20, 0x20);
   clear();
   kprint("Hello, world!", VGA_COLOR_GREEN);
   return;
