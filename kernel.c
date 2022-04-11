@@ -7,6 +7,8 @@ extern void write_port(unsigned short port, unsigned char data);
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
 unsigned int location = 0;
 unsigned int counter = 0;
+unsigned char kbstatus;
+char keycode;
 
 void clear() {
 	counter = 0;
@@ -45,5 +47,17 @@ void kmain(void) {
 	kprint("Hello, world!", VGA_COLOR_GREEN);
 	knewline();
 	kprint("Test", VGA_COLOR_GREEN);
+	knewline();
+	while(1) {
+		kbstatus = read_port(0x64);
+		if (status & 0x01) {
+			keycode = read_port(0x60);
+			vidptr[location++] = keyboard_map[(unsigned char) keycode];
+			vidptr[] = VGA_COLOR_GREEN;
+		}
+		else {
+			;
+		}
+	}
 	return;
 }
