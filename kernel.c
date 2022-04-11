@@ -11,7 +11,7 @@ unsigned int counter = 0;
 void clear() {
 	counter = 0;
 	location = 0;
-	while(j < 80 * 25 * 2) {
+	while(counter < 80 * 25 * 2) {
 		/* blank character */
 		vidptr[counter] = ' ';
 		/* attribute-byte - light grey on black screen */
