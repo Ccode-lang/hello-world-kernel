@@ -48,7 +48,7 @@ void term() {
 		kbstatus = read_port(0x64);
 		if (kbstatus & 0x01) {
 			keycode = read_port(0x60);
-			if (keyboard_map[(unsigned char) keycode] == "\n") {
+			if (keycode == 0x1C) {
 				knewline();
 				kprint("Terminal -$ ", VGA_COLOR_GREEN);
 			} else if (!(keycode < 0)) {
