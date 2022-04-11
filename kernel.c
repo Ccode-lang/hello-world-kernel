@@ -1,6 +1,9 @@
 #include "includes/colors.h"
 #include "includes/keymap.h"
 
+#define true 1
+#define false 0
+
 extern char read_port(unsigned short port);
 extern void write_port(unsigned short port, unsigned char data);
 
@@ -45,7 +48,10 @@ void term() {
 		kbstatus = read_port(0x64);
 		if (kbstatus & 0x01) {
 			keycode = read_port(0x60);
-			if (!(keycode < 0)) {
+			if (keyboard_map[(unsigned char) keycode] == "\n") {
+				knewline();
+				kprint("Terminal -$ ", VGA_COLOR_GREEN);
+			} else if (!(keycode < 0)) {
 				vidptr[location++] = keyboard_map[(unsigned char) keycode];
 				vidptr[location++] = VGA_COLOR_GREEN;
 			} else {
