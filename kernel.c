@@ -51,10 +51,13 @@ void term() {
 			keycode = read_port(0x60);
 			if (keycode == 0x1C) {
 				knewline();
-				if (command == "test\0") {
+				kprint(command, VGA_COLOR_GREEN)
+				if (command == "test") {
 					kprint("Test run.", VGA_COLOR_GREEN);
+					knewline();
 				} else {
 					kprint("Invalid command.", VGA_COLOR_GREEN);
+					knewline();
 				}
 				command = "";
 				kprint("Terminal -$ ", VGA_COLOR_GREEN);
