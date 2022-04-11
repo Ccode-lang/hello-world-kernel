@@ -5,37 +5,45 @@ extern char read_port(unsigned short port);
 extern void write_port(unsigned short port, unsigned char data);
 
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
-unsigned int i = 0;
-unsigned int j = 0;
+unsigned int location = 0;
+unsigned int counter = 0;
 
 void clear() {
-  j = 0;
-  i = 0;
+	counter = 0;
+	location = 0;
 	while(j < 80 * 25 * 2) {
 		/* blank character */
-		vidptr[j] = ' ';
+		vidptr[counter] = ' ';
 		/* attribute-byte - light grey on black screen */
-		vidptr[j+1] = 0x07; 		
-		j = j + 2;
+		vidptr[counter+1] = 0x07; 		
+		counter = counter + 2;
 	}
 }
 
 void kprint(const char *str, int color) {
-  j = 0;
-	while(str[j] != '\0') {
+	counter = 0;
+	while(str[counter] != '\0') {
 		/* the character's ascii */
-		vidptr[i] = str[j];
+		vidptr[location] = str[counter];
 		/* attribute-byte: give character black bg and light grey fg */
-		vidptr[i+1] = color;
-		++j;
-		i = i + 2;
+		vidptr[location+1] = color;
+		++counter;
+		location = location + 2;
 	}
 }
 
+void knewline() {
+	// number of bytes in a line
+	unsigned int line_size = 160;
+	location = location + (line_size - location % (line_size))
+}
+
 void kmain(void) {
-  write_port(0x21 , 0xFD);
-  write_port(0x20, 0x20);
-  clear();
-  kprint("Hello, world!", VGA_COLOR_GREEN);
-  return;
+	write_port(0x21 , 0xFD);
+	write_port(0x20, 0x20);
+	clear();
+	kprint("Hello, world!", VGA_COLOR_GREEN);
+	knewline();
+	kprint("Test", VGA_COLOR_GREEN)
+	return;
 }
