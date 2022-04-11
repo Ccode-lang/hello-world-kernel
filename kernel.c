@@ -35,7 +35,7 @@ void kprint(const char *str, int color) {
 void knewline() {
 	// number of bytes in a line
 	unsigned int line_size = 160;
-	location = location + (line_size - location % (line_size))
+	location = location + (line_size - location % (line_size));
 }
 
 void kmain(void) {
@@ -44,6 +44,6 @@ void kmain(void) {
 	clear();
 	kprint("Hello, world!", VGA_COLOR_GREEN);
 	knewline();
-	kprint("Test", VGA_COLOR_GREEN)
+	kprint("Test", VGA_COLOR_GREEN);
 	return;
 }
