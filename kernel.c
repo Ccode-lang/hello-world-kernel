@@ -12,6 +12,7 @@ unsigned int location = 0;
 unsigned int counter = 0;
 unsigned char kbstatus;
 char keycode;
+char command = "";
 
 void clear() {
 	counter = 0;
@@ -50,10 +51,17 @@ void term() {
 			keycode = read_port(0x60);
 			if (keycode == 0x1C) {
 				knewline();
+				if (command == "test\0") {
+					kprint("Test run.");
+				} else {
+					kprint("Invalid command.", VGA_COLOR_GREEN);
+				}
+				command = "";
 				kprint("Terminal -$ ", VGA_COLOR_GREEN);
 			} else if (!(keycode < 0)) {
 				vidptr[location++] = keyboard_map[(unsigned char) keycode];
 				vidptr[location++] = VGA_COLOR_GREEN;
+				command == keyboard_map[(unsigned char) keycode];
 			} else {
 				;
 			}
