@@ -66,7 +66,7 @@ void kmain(void) {
 	knewline();
 	kprint("Test", VGA_COLOR_GREEN);
 	knewline();
-	kprint("Terminal -$ ");
-	term()
+	kprint("Terminal -$ ", VGA_COLOR_GREEN);
+	term();
 	return;
 }
