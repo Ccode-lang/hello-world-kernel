@@ -52,7 +52,7 @@ void term() {
 			if (keycode == 0x1C) {
 				knewline();
 				if (command == "test\0") {
-					kprint("Test run.");
+					kprint("Test run.", VGA_COLOR_GREEN);
 				} else {
 					kprint("Invalid command.", VGA_COLOR_GREEN);
 				}
@@ -61,7 +61,7 @@ void term() {
 			} else if (!(keycode < 0)) {
 				vidptr[location++] = keyboard_map[(unsigned char) keycode];
 				vidptr[location++] = VGA_COLOR_GREEN;
-				command == keyboard_map[(unsigned char) keycode];
+				command = command + keyboard_map[(unsigned char) keycode];
 			} else {
 				;
 			}
