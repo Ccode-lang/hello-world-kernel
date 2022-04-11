@@ -52,8 +52,12 @@ void kmain(void) {
 		kbstatus = read_port(0x64);
 		if (kbstatus & 0x01) {
 			keycode = read_port(0x60);
-			vidptr[location++] = keyboard_map[(unsigned char) keycode];
-			vidptr[location++] = VGA_COLOR_GREEN;
+			if (keycode <= 128) {
+				vidptr[location++] = keyboard_map[(unsigned char) keycode];
+				vidptr[location++] = VGA_COLOR_GREEN;
+			} else {
+				;
+			}
 		}
 		else {
 			;
