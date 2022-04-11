@@ -66,7 +66,7 @@ void term() {
 			} else if (!(keycode < 0)) {
 				vidptr[location++] = keyboard_map[(unsigned char) keycode];
 				vidptr[location++] = VGA_COLOR_GREEN;
-				command[kbcounter] = command + keyboard_map[(unsigned char) keycode];
+				command[kbcounter] = keyboard_map[(unsigned char) keycode];
 				kbcounter++;
 			} else {
 				;
