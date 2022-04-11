@@ -40,14 +40,7 @@ void knewline() {
 	location = location + (line_size - location % (line_size));
 }
 
-void kmain(void) {
-	write_port(0x21 , 0xFD);
-	write_port(0x20, 0x20);
-	clear();
-	kprint("Hello, world!", VGA_COLOR_GREEN);
-	knewline();
-	kprint("Test", VGA_COLOR_GREEN);
-	knewline();
+void term() {
 	while(1) {
 		kbstatus = read_port(0x64);
 		if (kbstatus & 0x01) {
@@ -63,5 +56,17 @@ void kmain(void) {
 			;
 		}
 	}
+}
+
+void kmain(void) {
+	write_port(0x21 , 0xFD);
+	write_port(0x20, 0x20);
+	clear();
+	kprint("Hello, world!", VGA_COLOR_GREEN);
+	knewline();
+	kprint("Test", VGA_COLOR_GREEN);
+	knewline();
+	kprint("Terminal -$ ");
+	term()
 	return;
 }
