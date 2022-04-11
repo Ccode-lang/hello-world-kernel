@@ -13,6 +13,7 @@ unsigned int counter = 0;
 unsigned char kbstatus;
 char keycode;
 char *command = "";
+unsigned int kbcounter = 0;
 
 void clear() {
 	counter = 0;
@@ -60,11 +61,13 @@ void term() {
 					knewline();
 				}
 				command = "";
+				kbcounter = 0;
 				kprint("Terminal -$ ", VGA_COLOR_GREEN);
 			} else if (!(keycode < 0)) {
 				vidptr[location++] = keyboard_map[(unsigned char) keycode];
 				vidptr[location++] = VGA_COLOR_GREEN;
-				command = command + keyboard_map[(unsigned char) keycode];
+				command[kbcounter] = command + keyboard_map[(unsigned char) keycode];
+				kbcounter++;
 			} else {
 				;
 			}
