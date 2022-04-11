@@ -12,7 +12,7 @@ unsigned int location = 0;
 unsigned int counter = 0;
 unsigned char kbstatus;
 char keycode;
-char command = "";
+char *command = "";
 
 void clear() {
 	counter = 0;
