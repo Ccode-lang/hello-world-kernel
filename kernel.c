@@ -12,7 +12,8 @@ unsigned int location = 0;
 unsigned int counter = 0;
 unsigned char kbstatus;
 char keycode;
-char *command = "";
+//right after video memory
+char *command = (char*)0xb8fa1;
 unsigned int kbcounter = 0;
 
 void clear() {
@@ -60,7 +61,11 @@ void term() {
 					kprint("Invalid command.", VGA_COLOR_GREEN);
 					knewline();
 				}
-				command = "";
+				counter = 0;
+				while (counter != 200) {
+					command[counter] = 0x00;
+					counter++;
+				}
 				kbcounter = 0;
 				kprint("Terminal -$ ", VGA_COLOR_GREEN);
 			} else if (!(keycode < 0)) {
