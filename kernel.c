@@ -15,6 +15,7 @@ char keycode;
 //right after video memory
 char *command = (char*)0xb8fa1;
 unsigned int kbcounter = 0;
+char commandstr[80];
 
 void clear() {
 	counter = 0;
@@ -53,6 +54,10 @@ void term() {
 			keycode = read_port(0x60);
 			if (keycode == 0x1C) {
 				knewline();
+				counter = 0;
+				while (command[counter] != 0x00) {
+					
+				}
 				kprint(command, VGA_COLOR_GREEN);
 				if (command == "test") {
 					kprint("Test run.", VGA_COLOR_GREEN);
