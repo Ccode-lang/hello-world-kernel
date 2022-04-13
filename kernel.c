@@ -69,7 +69,7 @@ void term() {
 				if (((char)command[0] == 'c') && ((char)command[1] == 'l') && ((char)command[2] == 'e') && ((char)command[3] == 'a') && ((char)command[4] == 'r')) {
 					clear();
 				} else if (((char)command[0] == 'e') && ((char)command[1] == 'x') && ((char)command[2] == 'i') && ((char)command[3] == 't')) {
-					kprint("Shutting down.", VGA_COLOR_GREEN)
+					kprint("Shutting down.", VGA_COLOR_GREEN);
 					return;
 				} else {
 					kprint("Invalid command.", VGA_COLOR_GREEN);
