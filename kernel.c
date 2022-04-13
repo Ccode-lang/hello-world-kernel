@@ -85,7 +85,7 @@ void term() {
 				// show new prompt
 				kbcounter = 0;
 				kprint("Terminal -$ ", VGA_COLOR_GREEN);
-			} else if ((!(keycode < 0)) && (keycode != 0x14)) {
+			} else if (!(keycode < 0)) {
 				// print character on screen
 				vidptr[location++] = keyboard_map[(unsigned char) keycode];
 				vidptr[location++] = VGA_COLOR_GREEN;
