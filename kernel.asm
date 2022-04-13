@@ -8,7 +8,26 @@ section .text
         dd - (0x1BADB002 + 0x00) ;checksum. m+f+c should be zero
 
 global start
+global read_port
+global write_port
+
 extern kmain	        ;kmain is defined in the c file
+
+
+; Read and write borrowed from lisse (https://github.com/InsaneMiner/Lisse)
+read_port:
+	mov edx, [esp + 4]
+			;al is the lower 8 bits of eax
+	in al, dx	;dx is the lower 16 bits of edx
+	ret
+
+write_port:
+	mov   edx, [esp + 4]    
+	mov   al, [esp + 4 + 4]  
+	out   dx, al  
+	ret
+
+
 
 start:
   cli 			;block interrupts
