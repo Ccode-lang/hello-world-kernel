@@ -1,2 +1,19 @@
 # hello-world-kernel
-Just a wierd project I thought of
+A simple kernel for i386 CPUs that has a terminal.
+
+# Running
+First download the newest kernel.iso from actions tab then...
+ * Burn to a disk and boot with grub  
+ or
+ * Run with `qemu-system-i386 -kernel kernel.iso`
+# Grub config
+First rename the kernel.iso file to kernel-1 and add it to /boot directory.
+```
+title helloWorld
+	root (hd0,0)
+	kernel /boot/kernel-1 ro
+```
+# Features
+ * can write to basic vga video memory.
+ * Keyboard support.
+ * Has 2 commands.
