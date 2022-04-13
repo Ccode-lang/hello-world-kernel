@@ -56,7 +56,7 @@ void term() {
 				knewline();
 				counter = 0;
 				kprint(command, VGA_COLOR_GREEN);
-				if ((command[0] == "t") && (command[1] == "e") && (command[2] == "s") (command[3] == "t")) {
+				if (((char)command[0] == "t") && ((char)command[1] == "e") && ((char)command[2] == "s") ((char)command[3] == "t")) {
 					kprint("Test run.", VGA_COLOR_GREEN);
 					knewline();
 				} else {
