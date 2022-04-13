@@ -55,11 +55,8 @@ void term() {
 			if (keycode == 0x1C) {
 				knewline();
 				counter = 0;
-				while (command[counter] != 0x00) {
-					
-				}
 				kprint(command, VGA_COLOR_GREEN);
-				if (command == "test") {
+				if ((command[0] == "t") && (command[1] == "e") && (command[2] == "s") (command[3] == "t")) {
 					kprint("Test run.", VGA_COLOR_GREEN);
 					knewline();
 				} else {
@@ -68,7 +65,7 @@ void term() {
 				}
 				counter = 0;
 				while (counter != 200) {
-					command[counter] = 0x00;
+					command[counter] = ' ';
 					counter++;
 				}
 				kbcounter = 0;
