@@ -30,6 +30,11 @@ write_port:
 
 
 start:
+  ; hide cursor
+  mov  cx, 0x2000
+  mov  ah, 1
+  int  0x10
+  
   cli 			;block interrupts
   mov esp, stack_space	;set stack pointer
   call kmain
