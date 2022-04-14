@@ -114,7 +114,7 @@ void knewline() {
 	location = location + (line_size - location % (line_size));
 }
 
-void term() {
+void term(void) {
 	// get keyboard status
 	kbstatus = read_port(0x64);
 	if (kbstatus & 0x01) {
