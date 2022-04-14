@@ -115,6 +115,7 @@ void knewline() {
 }
 
 void term(void) {
+	write_port(0x20, 0x20);
 	// get keyboard status
 	kbstatus = read_port(0x64);
 	if (kbstatus & 0x01) {
@@ -165,7 +166,6 @@ void kmain(void) {
 	idt_init();
 	// init keyboard
 	write_port(0x21 , 0xFD);
-	write_port(0x20, 0x20);
 	// get ready to load.
 	clear();
 	kprint("Hello, world!", VGA_COLOR_GREEN);
