@@ -3,7 +3,7 @@ A simple kernel for i386 CPUs that has a terminal.
 
 # Running
 First download the newest kernel.iso from actions tab then...
- * Burn to a disk and boot with grub  
+ * boot with grub  
  or
  * Run with `qemu-system-i386 -kernel kernel.iso`
 # Grub config
