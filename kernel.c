@@ -162,7 +162,7 @@ void term(void) {
 }
 
 void kmain(void) {
-	idt_init()
+	idt_init();
 	// init keyboard
 	write_port(0x21 , 0xFD);
 	write_port(0x20, 0x20);
