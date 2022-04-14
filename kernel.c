@@ -9,6 +9,7 @@
 extern char read_port(unsigned short port);
 extern void write_port(unsigned short port, unsigned char data);
 extern void load_idt(unsigned long *idt_ptr);
+extern void kbhandler(void);
 
 char *vidptr = (char*)0xb8000; 	//video mem begins here.
 // location on screen in bytes
@@ -46,7 +47,7 @@ void idt_init(void)
 	unsigned long idt_address;
 	unsigned long idt_ptr[2];
 
-	keyboard_address = (unsigned long)keyboard_handler;
+	keyboard_address = (unsigned long)kbhandler;
 	IDT[0x21].offset_lowerbits = keyboard_address & 0xffff;
 	IDT[0x21].selector = KERNEL_CODE_SEGMENT_OFFSET;
 	IDT[0x21].zero = 0;
@@ -111,51 +112,49 @@ void knewline() {
 }
 
 void term() {
-	while(true) {
-		// get keyboard status
-		kbstatus = read_port(0x64);
-		if (kbstatus & 0x01) {
-			//get current keycode
-			keycode = read_port(0x60);
-			if (keycode == 0x1C) {
-				//runs if enter is pressed
-				knewline();
-				counter = 0;
-				
-				if (((char)command[0] == 'c') && ((char)command[1] == 'l') && ((char)command[2] == 'e') && ((char)command[3] == 'a') && ((char)command[4] == 'r')) {
-					clear();
-				} else if (((char)command[0] == 'e') && ((char)command[1] == 'x') && ((char)command[2] == 'i') && ((char)command[3] == 't')) {
-					kprint("Shutting down.", VGA_COLOR_GREEN);
-					return;
-				} else {
-					kprint("Invalid command.", VGA_COLOR_GREEN);
-					knewline();
-				}
-				
-				counter = 0;
-				// clear terminal input memory
-				while (counter != 200) {
-					command[counter] = ' ';
-					counter++;
-				}
-				// show new prompt
-				kbcounter = 0;
-				kprint("Terminal -$ ", VGA_COLOR_GREEN);
-			} else if (!(keycode < 0)) {
-				// print character on screen
-				vidptr[location++] = keyboard_map[(unsigned char) keycode];
-				vidptr[location++] = VGA_COLOR_GREEN;
-				
-				// add keyboard output to the input
-				command[kbcounter] = keyboard_map[(unsigned char) keycode];
-				kbcounter++;
+	// get keyboard status
+	kbstatus = read_port(0x64);
+	if (kbstatus & 0x01) {
+		//get current keycode
+		keycode = read_port(0x60);
+		if (keycode == 0x1C) {
+			//runs if enter is pressed
+			knewline();
+			counter = 0;
+			
+			if (((char)command[0] == 'c') && ((char)command[1] == 'l') && ((char)command[2] == 'e') && ((char)command[3] == 'a') && ((char)command[4] == 'r')) {
+				clear();
+			} else if (((char)command[0] == 'e') && ((char)command[1] == 'x') && ((char)command[2] == 'i') && ((char)command[3] == 't')) {
+				kprint("Shutting down.", VGA_COLOR_GREEN);
+				return;
 			} else {
-				;
+				kprint("Invalid command.", VGA_COLOR_GREEN);
+				knewline();
 			}
-		}
-		else {
+			
+			counter = 0;
+			// clear terminal input memory
+			while (counter != 200) {
+				command[counter] = ' ';
+				counter++;
+			}
+			// show new prompt
+			kbcounter = 0;
+			kprint("Terminal -$ ", VGA_COLOR_GREEN);
+		} else if (!(keycode < 0)) {
+			// print character on screen
+			vidptr[location++] = keyboard_map[(unsigned char) keycode];
+			vidptr[location++] = VGA_COLOR_GREEN;
+			
+			// add keyboard output to the input
+			command[kbcounter] = keyboard_map[(unsigned char) keycode];
+			kbcounter++;
+		} else {
 			;
 		}
+	}
+	else {
+		;
 	}
 }
 
@@ -171,6 +170,5 @@ void kmain(void) {
 	knewline();
 	// start terminal
 	kprint("Terminal -$ ", VGA_COLOR_GREEN);
-	term();
 	return;
 }
