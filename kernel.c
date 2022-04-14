@@ -4,6 +4,9 @@
 // true and false
 #define true 1
 #define false 0
+#define IDT_SIZE 256
+#define INTERRUPT_GATE 0x8e
+#define KERNEL_CODE_SEGMENT_OFFSET 0x08
 
 // import the commands from asm
 extern char read_port(unsigned short port);
