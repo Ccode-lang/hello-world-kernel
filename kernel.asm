@@ -11,6 +11,7 @@ global start
 global read_port
 global write_port
 global load_idt
+global kbhandler
 
 extern kmain	        ;kmain is defined in the c file
 extern term
