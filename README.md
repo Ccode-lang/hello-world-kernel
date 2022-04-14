@@ -18,3 +18,5 @@ title helloWorld
  * can write to basic vga video memory.
  * Keyboard support.
  * Has 2 commands.
+
+![](2022-04-14-105913_1920x1080_scrot.png)
