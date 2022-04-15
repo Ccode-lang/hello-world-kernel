@@ -149,9 +149,8 @@ void term(void) {
 			if (kbcounter <= 0 ) {
 				
 			} else {
-				location = location - 2;
-				vidptr[location++] == ' ';
-				vidptr[location++] == 0x07;
+				vidptr[location - 1] == 0x07;
+				vidptr[location - 2] == ' ';
 				location = location - 2;
 				
 				command[kbcounter - 1] = ' ';
