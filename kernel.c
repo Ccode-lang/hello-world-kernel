@@ -145,6 +145,18 @@ void term(void) {
 			// show new prompt
 			kbcounter = 0;
 			kprint("Terminal -$ ", VGA_COLOR_GREEN);
+		} else if (keyboard_map[(unsigned char) keycode] == '\b') {
+			if (kbcounter <= 0 ) {
+				
+			} else {
+				location = location - 2;
+				vidptr[location++] == ' ';
+				vidptr[location++] == 0x07;
+				location = location - 2;
+				
+				command[kbcounter - 1] = ' ';
+				kbcounter = kbcounter - 1;
+			}
 		} else if (!(keycode < 0)) {
 			// print character on screen
 			vidptr[location++] = keyboard_map[(unsigned char) keycode];
