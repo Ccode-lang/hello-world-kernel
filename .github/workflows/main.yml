@@ -20,7 +20,7 @@ jobs:
       - name: build
         run: |
           sudo apt update
-          sudo apt install nasm grub-pc
+          sudo apt install nasm grub-pc mtools
           bash blbuild.sh
       - uses: actions/upload-artifact@v2
         with:
