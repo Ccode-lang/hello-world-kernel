@@ -23,5 +23,5 @@ jobs:
           bash build.sh
       - uses: actions/upload-artifact@v2
         with:
-          name: kernel.iso
-          path: kernel.iso
+          name: wh.iso
+          path: wh.iso
