@@ -20,7 +20,7 @@ jobs:
       - name: build
         run: |
           sudo apt update
-          sudo apt install nasm gcc ld grub
+          sudo apt install nasm gcc ld grub-pc
           bash build.sh
       - uses: actions/upload-artifact@v2
         with:
