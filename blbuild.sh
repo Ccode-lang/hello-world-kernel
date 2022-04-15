@@ -6,7 +6,7 @@ rm -rf bin
 mkdir bin
 mkdir bin/binary
 mkdir bin/iso
-mkdir bin/iso/wh 
+mkdir bin/iso/hw 
 mkdir bin/iso/hw/kernel/
 mkdir bin/iso/boot
 mkdir bin/iso/boot/grub/
