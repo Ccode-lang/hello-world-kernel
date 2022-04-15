@@ -15,7 +15,7 @@ title helloWorld
 	kernel /boot/kernel-1 ro
 ```
 # Features
- * idt
+ * idt & gdt
  * can write to basic vga video memory.
  * Keyboard support.
  * Has 2 commands.
