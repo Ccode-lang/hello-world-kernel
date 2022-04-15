@@ -1,13 +1,14 @@
 # hello-world-kernel
 A simple kernel for i386 CPUs that has a terminal.
 
-# Running
-First download the newest kernel.iso from actions tab then...
- * boot with grub  
- or
+# Running wh.iso from blbuild.sh file
+ * Run with `qemu-system-i386 -cdrom wh.iso`
+This puts grub bootloader in the iso to make it easier to boot.
+# Running kernel.iso from build.sh file
  * Run with `qemu-system-i386 -kernel kernel.iso`
+This uses the bootloader that comes with qemu.
 # Grub config
-First rename the kernel.iso file to kernel-1 and add it to /boot directory.
+First rename the kernel.iso file you get from build.sh to kernel-1 and add it to /boot directory.
 ```
 title helloWorld
 	root (hd0,0)
