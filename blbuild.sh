@@ -1,5 +1,5 @@
 nasm -f elf32 kernel.asm -o kernel_asm.o
-gcc -fno-stack-protector -m32 -include 'stddef.h' -c kernel.c -o kernel_c.o
+gcc -fno-stack-protector -m32 -c kernel.c -o kernel_c.o
 ld -m elf_i386 -T link.ld -o kernel kernel_asm.o kernel_c.o
 rm -rf bin/iso
 rm -rf bin
