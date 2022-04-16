@@ -136,6 +136,7 @@ void term(void) {
 				counter = 5;
 				while(command[counter] != '\0') {
 					kprint((char *)command[counter], VGA_COLOR_GREEN);
+					counter++;
 				}
 				knewline();
 			} else {
