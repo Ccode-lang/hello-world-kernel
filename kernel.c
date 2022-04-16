@@ -117,6 +117,10 @@ void knewline() {
 }
 
 void term(void) {
+	while (counter != 80) {
+		command[counter] = ' ';
+		counter++;
+	}
 	write_port(0x20, 0x20);
 	// get keyboard status
 	kbstatus = read_port(0x64);
