@@ -23,8 +23,8 @@ unsigned int counter = 0;
 unsigned char kbstatus;
 // keyboard keycode variable
 char keycode;
-//right after video memory. used for storing the terminal command
-char *command = (char*)0xb8fa1;
+//used for storing the terminal command
+char command[80] = [];
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 
