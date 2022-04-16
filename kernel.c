@@ -150,7 +150,7 @@ void term(void) {
 			
 			counter = 0;
 			// clear terminal input memory
-			while (counter != 200) {
+			while (counter != 80) {
 				command[counter] = ' ';
 				counter++;
 			}
