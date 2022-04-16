@@ -137,7 +137,7 @@ void term(void) {
 				counter = 5;
 				while(command[counter] != '\0') {
 					pointed = &command[counter];
-					kprint((const)pointed, VGA_COLOR_GREEN);
+					kprint((const char *)pointed, VGA_COLOR_GREEN);
 					counter++;
 				}
 				knewline();
