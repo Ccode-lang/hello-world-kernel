@@ -24,9 +24,10 @@ unsigned char kbstatus;
 // keyboard keycode variable
 char keycode;
 //used for storing the terminal command
-char command[80] = [];
+char command[80];
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
+char *pointed;
 
 
 
@@ -135,7 +136,8 @@ void term(void) {
 			} else if (((char)command[0] == 'e') && ((char)command[1] == 'c') && ((char)command[2] == 'h') && ((char)command[3] == 'o') && ((char)command[4] == ' ')) {
 				counter = 5;
 				while(command[counter] != '\0') {
-					kprint(command[counter], VGA_COLOR_GREEN);
+					pointed = &command[counter];
+					kprint((const)pointed, VGA_COLOR_GREEN);
 					counter++;
 				}
 				knewline();
