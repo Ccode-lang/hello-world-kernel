@@ -1,6 +1,5 @@
 # hello-world-kernel
-A simple kernel for i386 CPUs that has a terminal.
-
+A simple kernel for i386 and x86_64 CPUs that has a terminal.
 # Running wh.iso from blbuild.sh file
  * Run with `qemu-system-i386 -cdrom wh.iso`
 This puts grub bootloader in the iso to make it easier to boot.
