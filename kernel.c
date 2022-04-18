@@ -27,8 +27,9 @@ char keycode;
 char command[80];
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
-char cache;
-char *pointer;
+unsigned int cachecounter = 0;
+char *cache = (char*)0x500;
+char **pointer;
 
 
 
@@ -140,8 +141,9 @@ void term(void) {
 				return;
 			} else if (((char)command[0] == 'e') && ((char)command[1] == 'c') && ((char)command[2] == 'h') && ((char)command[3] == 'o') && ((char)command[4] == ' ')) {
 				counter = 5;
+				cachecounter = 0;
 				while(command[counter] != 0) {
-					cache = command[counter];
+					cache[cachecounter] = command[counter];
 					pointer = &cache;
 					kprint((const char *)pointer, VGA_COLOR_GREEN);
 					counter++;
