@@ -24,12 +24,12 @@ unsigned char kbstatus;
 // keyboard keycode variable
 char keycode;
 //used for storing the terminal command
-char command[80];
+char *command = (char*)0x500;
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
-char *cache = (char*)0x500;
-char **pointer;
+char cache;
+char *pointer;
 
 
 
@@ -143,7 +143,7 @@ void term(void) {
 				counter = 5;
 				cachecounter = 0;
 				while(command[counter] != 0) {
-					cache[cachecounter] = command[counter];
+					cache = command[counter];
 					pointer = &cache;
 					kprint((const char *)pointer, VGA_COLOR_GREEN);
 					counter++;
