@@ -149,7 +149,7 @@ void term(void) {
 					counter++;
 					cachecounter++;
 				}
-				cache = '';
+				cache = ' ';
 				knewline();
 			} else {
 				kprint("Invalid command.", VGA_COLOR_GREEN);
@@ -197,7 +197,7 @@ void kmain(void) {
 	idt_init();
 	// init keyboard
 	write_port(0x21 , 0xFD);
-	cache = '';
+	cache = ' ';
 	// get ready to load.
 	clear();
 	kprint("Hello, world!", VGA_COLOR_GREEN);
