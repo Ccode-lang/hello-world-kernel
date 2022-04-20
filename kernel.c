@@ -24,7 +24,7 @@ unsigned char kbstatus;
 // keyboard keycode variable
 char keycode;
 //used for storing the terminal command
-char *command = (char*)0x500;
+char command[80] = {};
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
