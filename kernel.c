@@ -28,7 +28,7 @@ char *command = (char*)0x500;
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
-char cache[100];
+char cache[100] = {};
 char *pointer;
 
 
@@ -143,13 +143,11 @@ void term(void) {
 				counter = 5;
 				cachecounter = 0;
 				while(command[counter] != 0) {
-					cache[cachecounter] = command[counter];
-					pointer = &cache;
+					cache[0] = command[counter];
+					pointer = &cache[0];
 					kprint((const char *)pointer, VGA_COLOR_GREEN);
 					counter++;
-					cachecounter++;
 				}
-				cache = ' ';
 				knewline();
 			} else {
 				kprint("Invalid command.", VGA_COLOR_GREEN);
@@ -197,7 +195,7 @@ void kmain(void) {
 	idt_init();
 	// init keyboard
 	write_port(0x21 , 0xFD);
-	cache = ' ';
+	while (counter )
 	// get ready to load.
 	clear();
 	kprint("Hello, world!", VGA_COLOR_GREEN);
