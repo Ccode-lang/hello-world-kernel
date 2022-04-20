@@ -143,11 +143,13 @@ void term(void) {
 				counter = 5;
 				cachecounter = 0;
 				while(command[counter] != 0) {
-					cache = command[counter];
+					cache[cachecounter] = command[counter];
 					pointer = &cache;
 					kprint((const char *)pointer, VGA_COLOR_GREEN);
 					counter++;
+					cachecounter++;
 				}
+				cache = '';
 				knewline();
 			} else {
 				kprint("Invalid command.", VGA_COLOR_GREEN);
@@ -195,6 +197,7 @@ void kmain(void) {
 	idt_init();
 	// init keyboard
 	write_port(0x21 , 0xFD);
+	cache = '';
 	// get ready to load.
 	clear();
 	kprint("Hello, world!", VGA_COLOR_GREEN);
