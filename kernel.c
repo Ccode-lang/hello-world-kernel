@@ -28,7 +28,7 @@ char *command = (char*)0x500;
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
-char cache;
+char cache[100];
 char *pointer;
 
 
