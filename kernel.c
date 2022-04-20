@@ -141,12 +141,11 @@ void term(void) {
 				return;
 			} else if (((char)command[0] == 'e') && ((char)command[1] == 'c') && ((char)command[2] == 'h') && ((char)command[3] == 'o') && ((char)command[4] == ' ')) {
 				counter = 5;
-				cachecounter = 0;
 				while(command[counter] != 0) {
 					cache[0] = command[counter];
 					pointer = &cache[0];
 					kprint((const char *)pointer, VGA_COLOR_GREEN);
-					counter++;
+					counter = counter + 1;
 				}
 				knewline();
 			} else {
