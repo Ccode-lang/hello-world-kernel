@@ -28,7 +28,7 @@ char command[80] = {};
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
-char cache[100] = {};
+char cache[80] = {};
 char *pointer;
 
 
@@ -132,7 +132,7 @@ void term(void) {
 			//runs if enter is pressed
 			knewline();
 			counter = 0;
-			command[kbcounter] = ' ';
+			command[kbcounter] = '\0';
 			
 			if (((char)command[0] == 'c') && ((char)command[1] == 'l') && ((char)command[2] == 'e') && ((char)command[3] == 'a') && ((char)command[4] == 'r')) {
 				clear();
@@ -140,13 +140,9 @@ void term(void) {
 				kprint("Shutting down.", VGA_COLOR_GREEN);
 				return;
 			} else if (((char)command[0] == 'e') && ((char)command[1] == 'c') && ((char)command[2] == 'h') && ((char)command[3] == 'o') && ((char)command[4] == ' ')) {
-				counter = 5;
-				while((char)command[counter] != ' ') {
-					cache[0] = command[counter];
-					pointer = &cache[0];
-					kprint((const char *)pointer, VGA_COLOR_GREEN);
-					counter = counter + 1;
-				}
+				cache = command;
+				pointer = &cache[0];
+				kprint((const char *)pointer, VGA_COLOR_GREEN);
 				knewline();
 			} else {
 				kprint("Invalid command.", VGA_COLOR_GREEN);
