@@ -151,7 +151,7 @@ void term(void) {
 				clearcache();
 				counter = 5;
 				while (counter != 80) {
-					cache[counter] = command[counter];
+					cache[counter - 5] = command[counter];
 				}
 				kprint((const char *)&cache, VGA_COLOR_GREEN);
 				knewline();
