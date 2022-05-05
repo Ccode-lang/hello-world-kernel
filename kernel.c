@@ -98,6 +98,14 @@ void clear() {
 	}
 }
 
+void clearcache() {
+	counter = 0;
+	while (counter != 80) {
+		cache[counter] = '\0';
+		++counter;
+	}
+}
+
 void kprint(const char *str, int color) {
 	counter = 0;
 	//run until end of string is found
@@ -140,8 +148,12 @@ void term(void) {
 				kprint("Shutting down.", VGA_COLOR_GREEN);
 				return;
 			} else if (((char)command[0] == 'e') && ((char)command[1] == 'c') && ((char)command[2] == 'h') && ((char)command[3] == 'o') && ((char)command[4] == ' ')) {
-				cache = command;
-				pointer = &cache[0];
+				clearcache();
+				counter = 5;
+				while (counter != 80) {
+					cache[counter] = command[counter];
+				}
+				pointer = &cache;
 				kprint((const char *)pointer, VGA_COLOR_GREEN);
 				knewline();
 			} else {
