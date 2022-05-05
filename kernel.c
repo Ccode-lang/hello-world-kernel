@@ -132,7 +132,7 @@ void term(void) {
 			//runs if enter is pressed
 			knewline();
 			counter = 0;
-			command[kbcounter] = 0;
+			command[kbcounter] = ' ';
 			
 			if (((char)command[0] == 'c') && ((char)command[1] == 'l') && ((char)command[2] == 'e') && ((char)command[3] == 'a') && ((char)command[4] == 'r')) {
 				clear();
@@ -141,7 +141,7 @@ void term(void) {
 				return;
 			} else if (((char)command[0] == 'e') && ((char)command[1] == 'c') && ((char)command[2] == 'h') && ((char)command[3] == 'o') && ((char)command[4] == ' ')) {
 				counter = 5;
-				while(command[counter] != 0) {
+				while((char)command[counter] != ' ') {
 					cache[0] = command[counter];
 					pointer = &cache[0];
 					kprint((const char *)pointer, VGA_COLOR_GREEN);
