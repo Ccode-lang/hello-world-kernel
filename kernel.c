@@ -153,7 +153,7 @@ void term(void) {
 				while (counter != 80) {
 					cache[counter] = command[counter];
 				}
-				pointer = &cache;
+				pointer = &cache[0];
 				kprint((const char *)pointer, VGA_COLOR_GREEN);
 				knewline();
 			} else {
