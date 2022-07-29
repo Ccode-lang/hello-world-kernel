@@ -28,7 +28,7 @@ char command[80] = {};
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
-char *cache = {};
+char *cache;
 char *pointer;
 
 
@@ -153,7 +153,7 @@ void term(void) {
 				while (counter != 80) {
 					cache[counter - 5] = command[counter];
 				}
-				kprint(&(cache), VGA_COLOR_GREEN);
+				kprint(cache, VGA_COLOR_GREEN);
 				knewline();
 			} else {
 				kprint("Invalid command.", VGA_COLOR_GREEN);
