@@ -28,7 +28,7 @@ char command[80] = {};
 // a counter used for the keyboard
 unsigned int kbcounter = 0;
 unsigned int cachecounter = 0;
-char cache[80] = {};
+char *cache = {};
 char *pointer;
 
 
