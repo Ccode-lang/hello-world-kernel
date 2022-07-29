@@ -4,8 +4,8 @@ SECTIONS
  {
    . = 0x100000;
    .text : { *(.text) }
-   . += CONSTANT(MAXPAGESIZE)
+   . += CONSTANT(MAXPAGESIZE);
    .data : { *(.data) }
-   . += CONSTANT(MAXPAGESIZE)
+   . += CONSTANT(MAXPAGESIZE);
    .bss  : { *(.bss)  }
  }
